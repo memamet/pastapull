@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "pastapull"
+version = "0.1.0"
+description = ""
+authors = ["Max-Eugène Mamet <max-eugene@hotmail.fr>"]
+license = "MIT Licence"
+readme = "README.md"
+packages = [
+    { include = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = {extras = ["standard"], version = "^0.115.0"}
+requests = "^2.32.3"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
