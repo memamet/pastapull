@@ -130,21 +130,23 @@ OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 
 @dataclass
 class QueryResponse:
-    readme: str
+    original_readme: str
     improved_readme: str
-    model_used: str
+    llm_used: str
 
 
 def query_llm_to_improve_readme(url: str) -> QueryResponse:
-    readme = query_github_api(url)
+    original_readme = query_github_api(url)
     prompt = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     llm = ChatOpenAI(model_name=MODEL_TO_USE, temperature=0.1, api_key=OPENAI_API_KEY)
     chain = {"readme": RunnablePassthrough()} | prompt | llm | StrOutputParser()
-    improved_readme = chain.invoke(readme)
+    improved_readme = chain.invoke(original_readme)
     print(f"Improved README:\n{improved_readme}")
 
     return QueryResponse(
-        readme=readme, improved_readme=improved_readme, model_used=MODEL_TO_USE
+        original_readme=original_readme,
+        improved_readme=improved_readme,
+        llm_used=MODEL_TO_USE,
     )
 
 
