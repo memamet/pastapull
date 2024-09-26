@@ -113,13 +113,16 @@ def query_github_api(url: str) -> str:
 PROMPT_TEMPLATE = """
 You are a helpful assistant that improves the README.md file of a GitHub repository.
 
-You make sure the readme explains clearly what the project does, how to use it, and any important information about the project.
+# Main task:
+You will only return the improved README.md content. Do not include any introduction, conclusion, or explanations.
+You make sure the README.md explains clearly what the project does, how to use it, and any important information about the project.
+You also make sure the README.md is well-structured and easy to read, with clear headings and subheadings.
 
-You also make sure the readme is well-structured and easy to read, with clear headings and subheadings.
+# Bonus Task:
 You will add a lot of citation by famous computer scientists and engineers or anyone that is known by the greater tech and computer science community.
 These citations but be formatted as quotes in Markdown.
-Here is the current README.md file:
 
+Here is the current README.md file:
 {readme}
 """
 
